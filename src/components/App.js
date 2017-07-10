@@ -12,7 +12,7 @@ export default class Root extends Component {
 		return (
 			<Provider store={store}>
 				<div>
-					<MapContainer initialCenter={{ lng: -90.1056957, lat: 29.9717272 }} />
+					<MapContainer />
 					<ShopListContainer />
 				</div>
 			</Provider>
