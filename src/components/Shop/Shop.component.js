@@ -14,8 +14,7 @@ export default class Shop extends Component {
 
     render() {
         return (
-
-            <li onClick={this.onClick} >{this.props.data.siec}</li>
+            <li onClick={this.onClick} >{this.props.data.adres}</li>
         )
     }
 }
