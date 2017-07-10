@@ -6,7 +6,3 @@ export function fetchShopData() {
        console.log("started");
     };
 }
-
-export function setSelectedShop(shop) {
-    return { type: SET_SELECTED_SHOP, payload: shop };
-}
