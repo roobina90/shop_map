@@ -8,6 +8,7 @@ import ShopList from './ShopList.component';
 class ShopListContainer extends Component {
     constructor(props) {
         super(props);
+        this.handleShopChange = this.handleShopChange.bind(this);
     }
 
     componentDidMount() {
@@ -16,7 +17,8 @@ class ShopListContainer extends Component {
     }
 
     handleShopChange(shop) {
-        console.log(`Yay! You clicked shop ${shop}`);
+        console.log(`Yay! You clicked shop ${shop.siec}`);
+        this.props.setSelectedShop(shop)
     }
 
     render() {

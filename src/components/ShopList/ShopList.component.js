@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Shop from '../Shop/Shop.component';
 
 export default class ShopList extends Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         const shops = this.props.shops;
         return (
 
             <ul>
                 Here are some shops or not!
-       {shops.map((el) => <li onClick={this.props.onShopClick.bind(null, el)}>{el.siec}</li>
-                )}
+                {shops.map((shop, i) => <Shop key={i} data={shop} onClick={this.props.onShopClick} />)}
             </ul>
         )
     }
