@@ -12,9 +12,12 @@ export default class InfoWindow extends Component {
     }
 
     componentDidMount() {
-        this.infoWindow = new google.maps.InfoWindow();
-        this.makeInfoWindowEvent(this.props.map, this.infoWindow, ReactDOM.findDOMNode(this.infoWindowNode), this.props.marker);
-        this.props.pass(this.infoWindow);
+        if (this.props.marker && this.props.map && this.props.passRefsToParent) {
+            this.infoWindow = new google.maps.InfoWindow();
+            this.makeInfoWindowEvent(this.props.map, this.infoWindow, ReactDOM.findDOMNode(this.infoWindowNode), this.props.marker);
+            this.props.passRefsToParent(this.infoWindow);
+        }
+
     }
 
 

@@ -7,19 +7,10 @@ export default class Marker extends Component {
     constructor(props) {
         super(props);
         this.createMarker = this.createMarker.bind(this);
-       // this.makeInfoWindowEvent = this.makeInfoWindowEvent.bind(this);
         this.getInfoWindow = this.getInfoWindow.bind(this);
         this.infoWindow = null;
         this.marker = null;
     }
-
-
-    // makeInfoWindowEvent(map, infowindow, contentString, marker) {
-    //     google.maps.event.addListener(marker, 'click', function () {
-    //         infowindow.setContent(contentString);
-    //         infowindow.open(map, marker);
-    //     });
-    // }
 
     componentDidUnMount() {
         //google.maps.event.clearListeners(this.map, 'zoom_changed')
@@ -29,7 +20,7 @@ export default class Marker extends Component {
         this.infoWindow = windowObj;
     }
 
-    componentWillMount() {
+    createMarker() {
         this.marker = new google.maps.Marker({
             position: new google.maps.LatLng(this.props.data.latitude, this.props.data.longitude),
             map: this.props.map,
@@ -41,15 +32,15 @@ export default class Marker extends Component {
             }
         });
     }
-    createMarker() {
-        this.props.pass(this.marker, this.props.data.id, this.infoWindow);
-    }
-    
-    componentDidMount() {
+    componentWillMount() {
         this.createMarker();
     }
 
-    render() { 
-        return (<InfoWindow pass={this.getInfoWindow} marker={this.marker} map={this.props.map} data={this.props.data} />);
+    componentDidMount() {
+        this.props.passRefsToParent(this.marker, this.props.data.id, this.infoWindow);
+    }
+
+    render() {
+        return (<InfoWindow passRefsToParent={this.getInfoWindow} marker={this.marker} map={this.props.map} data={this.props.data} />);
     }
 }
