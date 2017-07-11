@@ -14,11 +14,12 @@ class MapContainer extends React.Component {
     }
 
     render() {
-        if (this.props.isFetching) {
+        if (this.props.isFetching || this.props.shops.length === 0) {
             return (<div>Map is loading</div>)
         } else {
+
             return (
-                <Map data={this.props.shops} selectedItem={this.props.selectedShop} />);
+                <Map selectedItem={this.props.selectedShop} data={this.props.shops} />);
         }
     }
 }
