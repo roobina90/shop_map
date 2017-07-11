@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Marker from './Marker.component';
+import Marker from '../Marker/Marker.component';
 
 export default class Map extends React.Component {
     constructor(props) {
