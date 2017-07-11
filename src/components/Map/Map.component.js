@@ -27,9 +27,11 @@ export default class Map extends React.Component {
     }
 
     componentDidUpdate() {
-        this.map = this.createMap();
-        this.markers = this.createMarkers();
+        //this.map = this.createMap();
+        //this.markers = this.createMarkers();
         if (this.props.selectedItem) {
+            var newCenter = new google.maps.LatLng(this.props.selectedItem.latitude, this.props.selectedItem.longitude);
+            this.map.panTo(newCenter);
             var selected = this.props.selectedItem;
             var selected1 = this.markers.filter((el) => {
                 return el.adres === selected.adres;
@@ -70,6 +72,7 @@ export default class Map extends React.Component {
 
     createMarkers() {
 
+
         function makeInfoWindowEvent(map, infowindow, contentString, marker) {
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent(contentString);
@@ -80,6 +83,7 @@ export default class Map extends React.Component {
         var infowindow = new google.maps.InfoWindow();
 
         return this.props.data.map((el, i) => {
+            var infoWindowText = `<img src="${el.logo}" width="50px" alt="${el.siec}" /><hr /><div>${el.godziny[0].Friday} - piątek</div>`;
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(el.latitude, el.longitude),
                 map: this.map,
@@ -90,7 +94,7 @@ export default class Map extends React.Component {
                     anchor: new google.maps.Point(0, 0)
                 }
             });
-            makeInfoWindowEvent(this.map, infowindow, "test" + i, marker);
+            makeInfoWindowEvent(this.map, infowindow, infoWindowText, marker);
             return { marker, adres: el.adres };
         });
     }
