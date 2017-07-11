@@ -24,7 +24,7 @@ export default class Map extends React.Component {
         return (
             <div id="map">
                 <div className='map_canvas' ref="mapCanvas"></div>
-                {this.state.map && (this.createMarkersComponents())}
+                <div id="hidden">{this.state.map && (this.createMarkersComponents())}</div>
             </div>);
     }
 
