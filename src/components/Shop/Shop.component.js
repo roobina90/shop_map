@@ -9,13 +9,13 @@ export default class Shop extends Component {
 
     }
     onClick() {
-        this.props.onClick(this.props.data)
+        this.props.onClick(this.props.data);
     }
 
     render() {
         return (
             <li onClick={this.onClick} >{this.props.data.adres}</li>
-        )
+        );
     }
 }
 

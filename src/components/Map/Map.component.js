@@ -12,6 +12,22 @@ export default class Map extends React.Component {
         this.markers = [];
     }
 
+    componentDidMount() {
+        this.setState({ map: this.createMap() });
+    }
+
+    componentDidUpdate() {
+        if (this.props.selectedItem) {
+            const newCenter = new google.maps.LatLng(this.props.selectedItem.latitude, this.props.selectedItem.longitude);
+            this.state.map.panTo(newCenter);
+            const selected = this.markers.filter((el) => {
+                el.infoWindow.close();
+                return this.props.selectedItem.id === el.id;
+            });
+            google.maps.event.trigger(selected[0].marker, "click");
+        }
+
+    }
     createMarkersComponents() {
         return this.props.data.map((el, i) => <Marker passRefsToParent={this.createMarkersRefference} key={i} data={el} map={this.state.map} />);
     }
@@ -20,55 +36,33 @@ export default class Map extends React.Component {
         this.markers.push({ marker, id, infoWindow });
     }
 
-    render() {
-        return (
-            <div id="map">
-                <div className='map_canvas' ref="mapCanvas"></div>
-                <div id="hidden">{this.state.map && (this.createMarkersComponents())}</div>
-            </div>);
-    }
-
-    componentDidMount() {
-        this.setState({ map: this.createMap() });
-    }
-
-
-    componentDidUpdate() {
-        if (this.props.selectedItem) {
-            var newCenter = new google.maps.LatLng(this.props.selectedItem.latitude, this.props.selectedItem.longitude);
-            this.state.map.panTo(newCenter);
-            var selected = this.props.selectedItem;
-            var selected1 = this.markers.filter((el) => {
-                el.infoWindow.close();
-                return selected.id === el.id;
-            });
-            google.maps.event.trigger(selected1[0].marker, "click");
-        }
-
-    }
-
-    componentDidUnMount() {
-        //google.maps.event.clearListeners(this.map, 'zoom_changed')
-    }
-
     createMap() {
         let mapOptions = {
             zoom: 20,
             center: this.mapCenter()
-        }
-        return new google.maps.Map(this.refs.mapCanvas, mapOptions)
+        };
+        return new google.maps.Map(this.refs.mapCanvas, mapOptions);
     }
 
     mapCenter() {
         if (this.props.data.length > 0) {
             return new google.maps.LatLng(
                 this.props.data[0].latitude,
-                this.props.data[0].longitude)
+                this.props.data[0].longitude);
         }
     }
+    render() {
+        return (
+            <div id="map">
+                <div className="map_canvas" ref="mapCanvas"></div>
+                <div id="hidden">{this.state.map && (this.createMarkersComponents())}</div>
+            </div>);
+    }
+
 }
 
 
-Map.PropTypes = {
-
+Map.propTypes = {
+    data: PropTypes.array,
+    selectedItem: PropTypes.object
 };

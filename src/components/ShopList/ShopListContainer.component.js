@@ -13,23 +13,18 @@ class ShopListContainer extends Component {
 
     componentDidMount() {
         this.props.fetchShopData();
-
     }
 
     handleShopChange(shop) {
-        console.log(`Yay! You clicked shop ${shop.siec}`);
-        this.props.setSelectedShop(shop)
+        this.props.setSelectedShop(shop);
     }
 
     render() {
         return (
             <div>
-                {this.props.isFetching && this.props.shops.length === 0 && <h2>Loading...</h2>}
+                {this.props.isFetching && this.props.shops.length === 0 && <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>}
                 {!this.props.isFetching && this.props.shops.length === 0 && <h2>Ooops! Could not get shops.</h2>}
-                {this.props.shops.length > 0 &&
-                    <div style={{ opacity: this.props.isFetching ? 0.5 : 1 }}>
-                            <ShopList shops={this.props.shops} onShopClick={this.handleShopChange} />
-                    </div>}
+                {this.props.shops.length > 0 && <ShopList shops={this.props.shops} onShopClick={this.handleShopChange} />}
                     
             </div>
 

@@ -12,8 +12,12 @@ export default class Marker extends Component {
         this.marker = null;
     }
 
-    componentDidUnMount() {
-        //google.maps.event.clearListeners(this.map, 'zoom_changed')
+    componentWillMount() {
+        this.createMarker();
+    }
+
+    componentDidMount() {
+        this.props.passRefsToParent(this.marker, this.props.data.id, this.infoWindow);
     }
 
     getInfoWindow(windowObj) {
@@ -32,15 +36,14 @@ export default class Marker extends Component {
             }
         });
     }
-    componentWillMount() {
-        this.createMarker();
-    }
-
-    componentDidMount() {
-        this.props.passRefsToParent(this.marker, this.props.data.id, this.infoWindow);
-    }
 
     render() {
         return (<InfoWindow passRefsToParent={this.getInfoWindow} marker={this.marker} map={this.props.map} data={this.props.data} />);
     }
 }
+
+Marker.propTypes = {
+    passRefsToParent: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
+    map: PropTypes.object.isRequired
+};

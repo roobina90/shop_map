@@ -13,7 +13,7 @@ export default class ShopList extends Component {
             <ul>
                 {shops.map((shop, i) => <Shop key={i} data={shop} onClick={this.props.onShopClick} />)}
             </ul>
-        )
+        );
     }
 }
 

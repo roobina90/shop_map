@@ -13,11 +13,11 @@ class ShopDetailsContainer extends Component {
                 <InfoWindow data={selectedShop} />
             );
         }
-        return null;
+        return null; 
     }
 }
 
-ShopDetailsContainer.PropTypes = {
+ShopDetailsContainer.propTypes = {
     selectedShop: PropTypes.object
 };
 
@@ -27,8 +27,4 @@ function mapStateToProps({ shop }) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ShopActionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShopDetailsContainer);
+export default connect(mapStateToProps)(ShopDetailsContainer);

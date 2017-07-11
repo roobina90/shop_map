@@ -15,17 +15,18 @@ class MapContainer extends React.Component {
 
     render() {
         if (this.props.isFetching || this.props.shops.length === 0) {
-            return (<div>Map is loading</div>)
+            return (<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>);
         } else {
-
             return (
                 <Map selectedItem={this.props.selectedShop} data={this.props.shops} />);
         }
     }
 }
 
-MapContainer.PropTypes = {
-
+MapContainer.propTypes = {
+    isFetching: PropTypes.bool.isRequired,
+    selectedShop: PropTypes.object,
+    shops: PropTypes.array.isRequired
 };
 
 
