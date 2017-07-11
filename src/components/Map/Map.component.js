@@ -26,6 +26,19 @@ export default class Map extends React.Component {
         //google.maps.event.addListener(this.map, 'zoom_changed', () => this.handleZoomChange())
     }
 
+    componentDidUpdate() {
+        this.map = this.createMap();
+        this.markers = this.createMarkers();
+        if (this.props.selectedItem) {
+            var selected = this.props.selectedItem;
+            var selected1 = this.markers.filter((el) => {
+                return el.adres === selected.adres;
+            });
+            google.maps.event.trigger(selected1[0].marker, "click");
+        }
+
+    }
+
     // clean up event listeners when component unmounts
     componentDidUnMount() {
         ``
@@ -34,35 +47,51 @@ export default class Map extends React.Component {
 
     createMap() {
         let mapOptions = {
-            zoom: 10,
+            zoom: 20,
             center: this.mapCenter()
         }
         return new google.maps.Map(this.refs.mapCanvas, mapOptions)
     }
 
     mapCenter() {
-        // if (this.props.selectedShop) {
-        //     return new google.maps.LatLng(
-        //         this.props.selectedShop.latitude,
-        //         this.props.selectedShop.longitude
-        //     )
-        // } else {
-        if(this.props.data.length>0) {
-             return new google.maps.LatLng(
-            this.props.data[0].latitude,
-           this.props.data[0].longitude)
+        if (this.props.selectedItem) {
+            return new google.maps.LatLng(
+                this.props.selectedItem.latitude,
+                this.props.selectedItem.longitude
+            )
+        } else {
+            if (this.props.data.length > 0) {
+                return new google.maps.LatLng(
+                    this.props.data[0].latitude,
+                    this.props.data[0].longitude)
+            }
         }
-       
-        //}
-
     }
 
     createMarkers() {
-        return this.props.data.map((el) => {
-            return new google.maps.Marker({
+
+        function makeInfoWindowEvent(map, infowindow, contentString, marker) {
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(contentString);
+                infowindow.open(map, marker);
+            });
+        }
+
+        var infowindow = new google.maps.InfoWindow();
+
+        return this.props.data.map((el, i) => {
+            var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(el.latitude, el.longitude),
-                map: this.map
-            })
+                map: this.map,
+                icon: {
+                    url: el.logo,
+                    scaledSize: new google.maps.Size(60, 30),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 0)
+                }
+            });
+            makeInfoWindowEvent(this.map, infowindow, "test" + i, marker);
+            return { marker, adres: el.adres };
         });
     }
 

@@ -18,7 +18,7 @@ class MapContainer extends React.Component {
             return (<div>Map is loading</div>)
         } else {
             return (
-                <Map data={this.props.shops} />);
+                <Map data={this.props.shops} selectedItem={this.props.selectedShop} />);
         }
     }
 }
