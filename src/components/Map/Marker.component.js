@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import InfoWindow from './InfoWindow.component';
 
 
 export default class Marker extends Component {
@@ -22,8 +24,10 @@ export default class Marker extends Component {
     }
 
     createMarker() {
+        var aaa = this.refs.infoWindow;
+        var bbb = ReactDOM.findDOMNode(aaa);
         var infowindow = new google.maps.InfoWindow();
-        var infoWindowText = `<img src="${this.props.data.logo}" width="50px" alt="${this.props.data.siec}" /><hr /><div>${this.props.data.godziny[0].Friday} - piątek</div>`;
+        var infoWindowText = bbb;//`<img src="${this.props.data.logo}" width="50px" alt="${this.props.data.siec}" /><hr /><div>${this.props.data.godziny[0].Friday} - piątek</div>`;
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(this.props.data.latitude, this.props.data.longitude),
             map: this.props.map,
@@ -35,13 +39,13 @@ export default class Marker extends Component {
             }
         });
         this.makeInfoWindowEvent(this.map, infowindow, infoWindowText, marker);
-        this.props.pass(marker, this.props.data.id);
+        this.props.pass(marker, this.props.data.id, infowindow);
     }
     componentDidMount() {
         this.createMarker();
     }
 
     render() {
-        return null;
+        return (<div id="hidden"><InfoWindow data={this.props.data} ref="infoWindow"/></div>);
     }
 }

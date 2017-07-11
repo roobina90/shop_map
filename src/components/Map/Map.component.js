@@ -16,8 +16,8 @@ export default class Map extends React.Component {
         return this.props.data.map((el, i) => <Marker pass={this.createMarkersRefference} key={i} data={el} map={this.state.map} />);
     }
 
-    createMarkersRefference(marker, id) {
-        this.markers.push({ marker, id });
+    createMarkersRefference(marker, id, infoWindow) {
+        this.markers.push({ marker, id, infoWindow });
     }
 
     render() {
@@ -39,6 +39,7 @@ export default class Map extends React.Component {
             this.state.map.panTo(newCenter);
             var selected = this.props.selectedItem;
             var selected1 = this.markers.filter((el) => {
+                el.infoWindow.close();
                 return selected.id === el.id;
             });
             google.maps.event.trigger(selected1[0].marker, "click");
