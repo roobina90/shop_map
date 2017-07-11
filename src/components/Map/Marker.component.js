@@ -17,6 +17,10 @@ export default class Marker extends Component {
         });
     }
 
+    componentDidUnMount() {
+        //google.maps.event.clearListeners(this.map, 'zoom_changed')
+    }
+
     createMarker() {
         var infowindow = new google.maps.InfoWindow();
         var infoWindowText = `<img src="${this.props.data.logo}" width="50px" alt="${this.props.data.siec}" /><hr /><div>${this.props.data.godziny[0].Friday} - piątek</div>`;
@@ -31,10 +35,10 @@ export default class Marker extends Component {
             }
         });
         this.makeInfoWindowEvent(this.map, infowindow, infoWindowText, marker);
+        this.props.pass(marker, this.props.data.id);
     }
     componentDidMount() {
         this.createMarker();
-
     }
 
     render() {

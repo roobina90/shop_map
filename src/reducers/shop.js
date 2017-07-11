@@ -15,7 +15,7 @@ const shopData = (state = DEFAULT_STATE, action) => {
 			};
 		case FETCH_SHOP_SUCCESS:
 			return {
-				shops: action.payload,
+				shops: action.payload.map((el,i) => ({...el,id: i})),
 				isFetching: false
 			};
 		case SET_SELECTED_SHOP:
