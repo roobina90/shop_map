@@ -10,9 +10,7 @@ export default class ShopList extends Component {
     render() {
         const shops = this.props.shops;
         return (
-
             <ul>
-                Here are some shops or not!
                 {shops.map((shop, i) => <Shop key={i} data={shop} onClick={this.props.onShopClick} />)}
             </ul>
         )

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ShopActionCreators from '../../actions/shop';
 import ShopList from './ShopList.component';
-import InfoWindow from '../InfoWindow/InfoWindow.component';
 
 class ShopListContainer extends Component {
     constructor(props) {
@@ -30,7 +29,6 @@ class ShopListContainer extends Component {
                 {this.props.shops.length > 0 &&
                     <div style={{ opacity: this.props.isFetching ? 0.5 : 1 }}>
                             <ShopList shops={this.props.shops} onShopClick={this.handleShopChange} />
-                            {this.props.selectedShop && <InfoWindow data={this.props.selectedShop} />}
                     </div>}
                     
             </div>
