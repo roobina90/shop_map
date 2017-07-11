@@ -30,7 +30,7 @@ class ShopListContainer extends Component {
                 {this.props.shops.length > 0 &&
                     <div style={{ opacity: this.props.isFetching ? 0.5 : 1 }}>
                             <ShopList shops={this.props.shops} onShopClick={this.handleShopChange} />
-                            <InfoWindow data={this.props.selectedShop} />
+                            {this.props.selectedShop && <InfoWindow data={this.props.selectedShop} />}
                     </div>}
                     
             </div>

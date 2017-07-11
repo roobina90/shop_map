@@ -9,6 +9,9 @@ export default class InfoWindow extends Component {
         super(props);
         this.infoWindow = null;
         this.infoWindowNode = null;
+        this.daysOfWeek = { Sunday: "Niedziela", Monday: "Poniedziałek", Tuesday: "Wtorek", Wednesday: "Środa", Thursday: "Czwartek", Friday: "Piątek", Saturday: "Sobota" };
+        //var today = new Date();
+        this.todaysDateDay = new Date().getDay();
     }
 
     componentDidMount() {
@@ -29,10 +32,17 @@ export default class InfoWindow extends Component {
     }
 
     render() {
+        const data = this.props.data;
         return (<div ref={(info) => { this.infoWindowNode = info } }>
-            <img src={this.props.data.logo} width="50px" alt={this.props.data.siec} />
+            <img src={data.logo} width="50px" alt={data.siec} />
+            <span>{data.siec}</span>
+            <div>{data.adres}</div>
             <hr />
-            <div>piątek - {this.props.data.godziny[0].Friday}</div>
+            <ul>
+                {
+                    Object.keys(this.daysOfWeek).map((el, i) => (<li key={i} className={(i === this.todaysDateDay) ? "active" : ""}><span>{this.daysOfWeek[el]}:</span><span>{data.godziny[0][el]}</span></li>))
+                }
+            </ul>
         </div>)
     }
 }
