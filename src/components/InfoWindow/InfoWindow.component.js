@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import "./InfoWindow.css";
 
 
 
@@ -43,7 +44,7 @@ export default class InfoWindow extends Component {
                 <hr />
                 <ul className="shop-infoWindow-openHours">
                     {
-                        Object.keys(this.daysOfWeek).map((el, i) => (<li className="shop-infoWindow-openHours-item" key={i} className={(i === this.todaysDateDay) ? "is-active" : ""}><span>{this.daysOfWeek[el]}:</span><span>{data.godziny[0][el]}</span></li>))
+                        Object.keys(this.daysOfWeek).map((el, i) => (<li key={i} className={"shop-infoWindow-openHours-item "+ ((i === this.todaysDateDay) ? "is-active" : "")}><span className="shop-infoWindow-openHours-item--left">{this.daysOfWeek[el]}:</span><span className="shop-infoWindow-openHours-item--right">{data.godziny[0][el]}</span></li>))
                     }
                 </ul>
             </div>);
