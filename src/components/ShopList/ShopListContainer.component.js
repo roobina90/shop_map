@@ -16,14 +16,15 @@ class ShopListContainer extends Component {
     }
 
     handleShopChange(shop) {
+        
         this.props.setSelectedShop(shop);
     }
 
     render() {
         return (
-            <div>
+            <div className="shop-shopListContainer">
                 {this.props.isFetching && this.props.shops.length === 0 && <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>}
-                {!this.props.isFetching && this.props.shops.length === 0 && <h2>Ooops! Could not get shops.</h2>}
+                {!this.props.isFetching && this.props.shops.length === 0 && <h2 className="shop-u-alert">Ooops! Could not get shops.</h2>}
                 {this.props.shops.length > 0 && <ShopList shops={this.props.shops} onShopClick={this.handleShopChange} />}
                     
             </div>

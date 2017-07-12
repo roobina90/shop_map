@@ -10,10 +10,12 @@ class ShopDetailsContainer extends Component {
         const selectedShop = this.props.selectedShop;
         if (selectedShop) {
             return (
-                <InfoWindow data={selectedShop} />
+                <div className="shop-shopDetailsContainer">
+                    <InfoWindow data={selectedShop} />
+                </div>
             );
         }
-        return null; 
+        return null;
     }
 }
 

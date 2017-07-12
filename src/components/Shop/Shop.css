@@ -1,0 +1,21 @@
+.shop-shopList-item {
+    list-style: none;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.shop-shopList-item:before {
+    content:"";
+    background-image: url("https://cdn2.iconfinder.com/data/icons/social-media-8/128/pointer.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -10px;
+    top: 20px;
+}
+
+.shop-shopList-item.is-active {
+    background-color: #cfd1d6;
+}

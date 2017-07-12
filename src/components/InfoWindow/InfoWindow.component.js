@@ -36,14 +36,14 @@ export default class InfoWindow extends Component {
     render() {
         const data = this.props.data;
         return (
-            <div ref={(info) => {this.infoWindowNode = info}}>
-                <img src={data.logo} width="50px" alt={data.siec} />
-                <span>{data.siec}</span>
-                <div>{data.adres}</div>
+            <div className="shop-infoWindow" ref={(info) => {this.infoWindowNode = info}}>
+                <img className="shop-infoWindow-logo" src={data.logo} alt={data.siec} title={data.siec}/>
+                <span className="shop-infoWindow-name">{data.siec}</span>
+                <div className="shop-infoWindow-addres">{data.adres}</div>
                 <hr />
-                <ul>
+                <ul className="shop-infoWindow-openHours">
                     {
-                        Object.keys(this.daysOfWeek).map((el, i) => (<li key={i} className={(i === this.todaysDateDay) ? "active" : ""}><span>{this.daysOfWeek[el]}:</span><span>{data.godziny[0][el]}</span></li>))
+                        Object.keys(this.daysOfWeek).map((el, i) => (<li className="shop-infoWindow-openHours-item" key={i} className={(i === this.todaysDateDay) ? "is-active" : ""}><span>{this.daysOfWeek[el]}:</span><span>{data.godziny[0][el]}</span></li>))
                     }
                 </ul>
             </div>);
