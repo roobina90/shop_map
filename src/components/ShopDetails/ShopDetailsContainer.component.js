@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ShopActionCreators from '../../actions/shop';
 import InfoWindow from '../InfoWindow/InfoWindow.component';
+import "./ShopDetails.css";
 
 class ShopDetailsContainer extends Component {
     render() {

@@ -2,7 +2,7 @@
     background-color: #eaebed;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.shop-shopList {
+    float: left;
+    width: 50%;
+    min-width: 200px;
 }

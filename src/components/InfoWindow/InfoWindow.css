@@ -32,6 +32,10 @@
     content: "";
 }
 
+.shop-infoWindow-openHours-item.is-active {
+    background-color: #eaebed;
+}
+
 .shop-infoWindow-openHours-item--left {
     float: left;
 }
