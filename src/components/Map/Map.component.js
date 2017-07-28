@@ -11,6 +11,7 @@ export default class Map extends React.Component {
         this.createMarkersRefference = this.createMarkersRefference.bind(this);
         this.state = { map: null };
         this.markers = [];
+        this.mapCanvas = null;
     }
 
     componentDidMount() {
@@ -42,7 +43,7 @@ export default class Map extends React.Component {
             zoom: 20,
             center: this.mapCenter()
         };
-        return new google.maps.Map(this.refs.mapCanvas, mapOptions);
+        return new google.maps.Map(this.mapCanvas, mapOptions);
     }
 
     mapCenter() {
@@ -55,7 +56,7 @@ export default class Map extends React.Component {
     render() {
         return (
             <div className="shop-mapContainer">
-                <div className="shop-mapContainer-canvas" ref="mapCanvas"></div>
+                <div className="shop-mapContainer-canvas" ref={(map)=>{this.mapCanvas = map}}></div>
                 <div className="shop-u-hidden">{this.state.map && (this.createMarkersComponents())}</div>
             </div>);
     }
