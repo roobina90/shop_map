@@ -31,7 +31,7 @@ export default class Map extends React.Component {
 
     }
     createMarkersComponents() {
-        return this.props.data.map((el, i) => <Marker passRefsToParent={this.createMarkersRefference} key={i} data={el} map={this.state.map} />);
+        return this.props.data.map((el) => <Marker passRefsToParent={this.createMarkersRefference} key={el.id} data={el} map={this.state.map} />);
     }
 
     createMarkersRefference(marker, id, infoWindow) {
