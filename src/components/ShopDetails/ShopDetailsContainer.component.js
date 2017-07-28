@@ -6,6 +6,8 @@ import * as ShopActionCreators from '../../actions/shop';
 import InfoWindow from '../InfoWindow/InfoWindow.component';
 import "./ShopDetails.css";
 
+
+//todo : stateless
 class ShopDetailsContainer extends Component {
     render() {
         const selectedShop = this.props.selectedShop;

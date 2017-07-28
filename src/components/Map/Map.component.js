@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import autobind from 'autobind-decorator';
 import Marker from '../Marker/Marker.component';
 import "./Map.css";
 
 export default class Map extends React.Component {
     constructor(props) {
         super(props);
-        this.mapCenter = this.mapCenter.bind(this);
-        this.createMarkersComponents = this.createMarkersComponents.bind(this);
-        this.createMarkersRefference = this.createMarkersRefference.bind(this);
         this.state = { map: null };
         this.markers = [];
         this.mapCanvas = null;
@@ -30,14 +28,18 @@ export default class Map extends React.Component {
         }
 
     }
+
+    @autobind
     createMarkersComponents() {
         return this.props.data.map((el) => <Marker passRefsToParent={this.createMarkersRefference} key={el.id} data={el} map={this.state.map} />);
     }
 
+    @autobind
     createMarkersRefference(marker, id, infoWindow) {
         this.markers.push({ marker, id, infoWindow });
     }
 
+    @autobind
     createMap() {
         let mapOptions = {
             zoom: 20,
@@ -46,6 +48,7 @@ export default class Map extends React.Component {
         return new google.maps.Map(this.mapCanvas, mapOptions);
     }
 
+    @autobind
     mapCenter() {
         if (this.props.data.length > 0) {
             return new google.maps.LatLng(

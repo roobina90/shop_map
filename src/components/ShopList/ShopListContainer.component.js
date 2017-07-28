@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ShopActionCreators from '../../actions/shop';
+import autobind from "autobind-decorator";
 import ShopList from './ShopList.component';
 
 class ShopListContainer extends Component {
     constructor(props) {
         super(props);
-        this.handleShopChange = this.handleShopChange.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchShopData();
     }
 
+    @autobind
     handleShopChange(shop) {
-        
         this.props.setSelectedShop(shop);
     }
 

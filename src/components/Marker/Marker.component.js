@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import autobind from "autobind-decorator";
 import InfoWindow from '../InfoWindow/InfoWindow.component';
 
 
 export default class Marker extends Component {
     constructor(props) {
         super(props);
-        this.createMarker = this.createMarker.bind(this);
-        this.getInfoWindow = this.getInfoWindow.bind(this);
         this.infoWindow = null;
         this.marker = null;
     }
@@ -20,10 +19,12 @@ export default class Marker extends Component {
         this.props.passRefsToParent(this.marker, this.props.data.id, this.infoWindow);
     }
 
+    @autobind
     getInfoWindow(windowObj) {
         this.infoWindow = windowObj;
     }
 
+    @autobind
     createMarker() {
         this.marker = new google.maps.Marker({
             position: new google.maps.LatLng(this.props.data.latitude, this.props.data.longitude),

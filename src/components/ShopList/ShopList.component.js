@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Shop from '../Shop/Shop.component';
+import autobind from "autobind-decorator";
 import "./ShopList.css";
 
 export default class ShopList extends Component {
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
         this.selected = {id:-1};
     }
 
+    @autobind
     onClick(data) {
         this.selected = data;
         this.props.onShopClick(data);
