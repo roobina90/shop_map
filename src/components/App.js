@@ -7,19 +7,15 @@ import ShopDetailsContainer from './ShopDetails/ShopDetailsContainer.component';
 import "./App.css";
 import "../style/common.css";
 
-
 const store = configureStore();
 
-export default class Root extends Component {
-	render() {
-		return (
-			<Provider store={store}>
-				<div className="shop-appContainer">
-					<MapContainer />
-					<ShopListContainer />
-					<ShopDetailsContainer />
-				</div>
-			</Provider>
-		);
-	}
-}
+const Root = () => (
+	<Provider store={store}>
+		<div className="shop-appContainer">
+			<MapContainer />
+			<ShopListContainer />
+			<ShopDetailsContainer />
+		</div>
+	</Provider>
+);
+export default Root;
