@@ -7,10 +7,8 @@ import InfoWindow from '../InfoWindow/InfoWindow.component';
 import "./ShopDetails.css";
 
 
-//todo : stateless
-class ShopDetailsContainer extends Component {
-    render() {
-        const selectedShop = this.props.selectedShop;
+
+const ShopDetailsContainer = ({selectedShop}) => {
         if (selectedShop) {
             return (
                 <div className="shop-shopDetailsContainer">
@@ -19,7 +17,7 @@ class ShopDetailsContainer extends Component {
             );
         }
         return null;
-    }
+
 }
 
 ShopDetailsContainer.propTypes = {
