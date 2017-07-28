@@ -7,6 +7,7 @@ export default {
   devtool: 'cheap-module-eval-source-map',
   noInfo: false,
   entry: [
+    'whatwg-fetch',
     'eventsource-polyfill',
     'webpack-hot-middleware/client?reload=true',
     './src/index'
